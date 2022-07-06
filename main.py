@@ -1,9 +1,4 @@
 from tkinter import *
-from menu import Menu
-
-
+from package import Menu
 class Main():
     Menu.initialize()
-
-        
-    
