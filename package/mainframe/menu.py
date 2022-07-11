@@ -17,7 +17,7 @@ class Window(tk.Tk):
     
         self.frames = {}
         
-        for F in (Menu, Interface, Easy):
+        for F in (Menu, Interface, Easy, Medium, Hard, HumanPlayer):
             frame = F(window, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -48,11 +48,11 @@ class Menu(tk.Frame):
         hard_button = Button(self, text='Difícil', font=SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Hard))
         hard_button.place(x=125, y=250)     
             
-        reset_button = Button(self, text='Restart', font=SMALL_FONT, padx=10, pady=2, command=restart)
-        reset_button.place(x=120, y=300)
+        interface_button = Button(self, text='Interface', font=SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Interface))
+        interface_button.place(x=114, y=300)
         
         
-            
+
 window = Window()
 window.geometry("318x470")
 window.title("Menu")
