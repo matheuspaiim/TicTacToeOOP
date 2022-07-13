@@ -1,4 +1,7 @@
 from tkinter import *
+import tkinter as tk
+from package.functionalities.game import Interface
+from package.mainframe.reusable_code import ReusableCode
 
 player = "X"
 buttons =  [[0, 0, 0],
@@ -66,3 +69,27 @@ class Operation():
 
         else:
             return False
+
+
+class Easy(tk.Frame):   
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        Interface.board(self)
+           
+           
+class Medium(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        Interface.board(self)
+ 
+            
+class Hard(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        Interface.board(self)
+       
+        
+class HumanPlayer(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        Interface.board(self)

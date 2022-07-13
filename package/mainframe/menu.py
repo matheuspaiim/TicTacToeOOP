@@ -1,6 +1,6 @@
 from tkinter import *
-from package.functionalities.game import Easy, Medium, Hard, HumanPlayer
-from package.mainframe.labels import Labels
+from package.functionalities.operation import Easy, Medium, Hard, HumanPlayer
+from package.mainframe.reusable_code import ReusableCode
 import tkinter as tk
 
 
@@ -33,16 +33,16 @@ class Menu(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
              
-        human_button = Button(self, text='Jogar contra um amigo', font=Labels.SMALL_FONT, padx=15, pady=2, command=lambda: controller.show_frame(HumanPlayer))
+        human_button = Button(self, text='Jogar contra um amigo', font=ReusableCode.SMALL_FONT, padx=15, pady=2, command=lambda: controller.show_frame(HumanPlayer))
         human_button.place(x=65, y=150)
         
-        easy_button = Button(self, text='Fácil', font=Labels.SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Easy))
+        easy_button = Button(self, text='Fácil', font=ReusableCode.SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Easy))
         easy_button.place(x=128, y=200)  
         
-        medium_button = Button(self, text='Médio', font=Labels.SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Medium))
+        medium_button = Button(self, text='Médio', font=ReusableCode.SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Medium))
         medium_button.place(x=124, y=250)  
         
-        hard_button = Button(self, text='Difícil', font=Labels.SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Hard))
+        hard_button = Button(self, text='Difícil', font=ReusableCode.SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Hard))
         hard_button.place(x=125, y=300)     
             
         
