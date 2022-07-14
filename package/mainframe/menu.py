@@ -1,6 +1,6 @@
 from tkinter import *
 from package.functionalities.operation import Easy, Medium, Hard, HumanPlayer
-from package.mainframe.reusable_code import ReusableCode
+from package.functionalities.reusable_code import ReusableCode
 import tkinter as tk
 
 

@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk
-from package.mainframe.reusable_code import ReusableCode
+from package.functionalities.reusable_code import ReusableCode
 
 class Interface():
     #____________________Visual Board____________________
@@ -22,12 +22,19 @@ class Interface():
         def restart_button(self):
             human_button = Button(self, text='Restart', font=ReusableCode.SMALL_FONT, padx=15, pady=2, command=Operation.new_game)
             human_button.place(x=114, y=460)                          
-            restart_button(self)
+        restart_button(self)
         
         #____________________Change Player Button (o)____________________
         
-        def o_player():  
-            ... 
+        def o_player(): 
+            import package.functionalities.reusable_code
+            player = package.functionalities.reusable_code.player 
+            if player == "O" or player == "X":
+                HumanPlayer.human_play(row, column)
+                Operation.new_game()
+                ReusableCode.label_o()
+                ReusableCode.restarting_score(self)                
+                 
         self.python_image_o = tk.PhotoImage(file='C:/Users/mathe/Documents/GitHub/TicTacToe2.0/assets/o.png')
         button_o = ttk.Button(
             self,
@@ -39,7 +46,14 @@ class Interface():
         #____________________Change Player Button (x)____________________
         
         def x_player():
-            ...
+            import package.functionalities.reusable_code
+            player = package.functionalities.reusable_code.player 
+            if player == "X" or player == "O":
+                HumanPlayer.human_play(row, column)
+                Operation.new_game()
+                ReusableCode.label_x()
+                ReusableCode.restarting_score(self) 
+                  
         self.python_image_x = tk.PhotoImage(file='C:/Users/mathe/Documents/GitHub/TicTacToe2.0/assets/x.png')   
         button_x = ttk.Button(
             self,
@@ -49,4 +63,4 @@ class Interface():
         button_x.place(x=210, y=390)
     
         ReusableCode.label(self)
-        ReusableCode.restarting_score(self)
+        ReusableCode.score(self)

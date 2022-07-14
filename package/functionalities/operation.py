@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter as tk
-from package.functionalities.game import Interface
-from package.mainframe.reusable_code import ReusableCode
+from package.mainframe.interface import Interface
+from package.functionalities.reusable_code import ReusableCode
 
 buttons =  [[0, 0, 0],
             [0, 0, 0],
@@ -92,8 +92,8 @@ class HumanPlayer(Operation, tk.Frame):
         Interface.board(self)
 
     def human_play(row, column):
-        import package.mainframe.reusable_code
-        player = package.mainframe.reusable_code.player
+        import package.functionalities.reusable_code
+        player = package.functionalities.reusable_code.player
         if buttons[row][column]['text'] == "" and Operation.check_winner() is False:
 
             if player == "X":

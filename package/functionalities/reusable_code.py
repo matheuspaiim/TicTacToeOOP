@@ -8,8 +8,8 @@ class ReusableCode():
     BIG_FONT = ('Sans-serif', 40, 'bold') 
 
 
-    def restarting_score(self): 
-        global score_x, score_x_label, score_o, score_o_label       
+    def score(self):
+        global score_x_label, score_o_label       
         score_x_label = Label(self, text='0', font=(ReusableCode.MEDIUM_FONT))
         score_x_label.place(x=120, y=400)  
         
@@ -17,8 +17,10 @@ class ReusableCode():
         score_o_label.place(x=173, y=400)  
         
         score_break = Label(self, text=':', font=(ReusableCode.MEDIUM_FONT))
-        score_break.place(x=149, y=398) 
-        
+        score_break.place(x=149, y=398)         
+
+    def restarting_score(self): 
+        global score_x, score_o
         score_x = 0
         score_o = 0
         score_x_label['text'] = 0
@@ -32,24 +34,24 @@ class ReusableCode():
 
     def label_x():    
         global player, label
-        label.config(text=("Vez de "+player), foreground="#e85151")
+        label.config(text=("Vez de X"), foreground="#e85151")
     
         
     def label_o():   
         global player, label 
-        label.config(text=("Vez de "+player), foreground="#3297a8")     
+        label.config(text=("Vez de O"), foreground="#3297a8")     
         
         
     def bot_move():  
         global player, label
         player = "O"
-        label.config(text=("Vez de "+player), foreground="#3297a8")
+        label.config(text=("Vez de O"), foreground="#3297a8")
         
 
     def player_move():       
         global player, label 
         player = "X"
-        label.config(text=("Vez de "+player), foreground="#e85151")    
+        label.config(text=("Vez de X"), foreground="#e85151")    
 
 
     def bot_win():  
