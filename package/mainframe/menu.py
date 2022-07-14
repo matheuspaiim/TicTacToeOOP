@@ -43,10 +43,9 @@ class Menu(tk.Frame):
         medium_button.place(x=124, y=250)  
         
         hard_button = Button(self, text='Difícil', font=ReusableCode.SMALL_FONT, padx=10, pady=2, command=lambda: controller.show_frame(Hard))
-        hard_button.place(x=125, y=300)     
-            
+        hard_button.place(x=125, y=300)           
         
 window = Window()
-window.geometry("318x470")
+window.geometry("318x510")
 
 window.mainloop()

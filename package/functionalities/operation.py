@@ -3,15 +3,12 @@ import tkinter as tk
 from package.functionalities.game import Interface
 from package.mainframe.reusable_code import ReusableCode
 
-player = "X"
 buttons =  [[0, 0, 0],
             [0, 0, 0],
-            [0, 0, 0]]     
-
+            [0, 0, 0]]  
 class Operation():
- 
+      
     def new_game():
-
         for row in range(3):
             for column in range(3):
                 buttons[row][column].config(text="", bg="#3b3b3b")
@@ -89,7 +86,38 @@ class Hard(tk.Frame):
         Interface.board(self)
        
         
-class HumanPlayer(tk.Frame):
+class HumanPlayer(Operation, tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         Interface.board(self)
+
+    def human_play(row, column):
+        import package.mainframe.reusable_code
+        player = package.mainframe.reusable_code.player
+        if buttons[row][column]['text'] == "" and Operation.check_winner() is False:
+
+            if player == "X":
+
+                buttons[row][column]['text'] = player
+                
+                if Operation.check_winner() is False:
+                    ReusableCode.bot_move()
+
+                elif Operation.check_winner() is True:
+                    ReusableCode.player_win()
+                    
+                elif Operation.check_winner() == "Empate":
+                    ReusableCode.tie()
+
+            else:
+
+                buttons[row][column]['text'] = player
+
+                if Operation.check_winner() is False:
+                    ReusableCode.player_move()
+        
+                elif Operation.check_winner() is True:
+                    ReusableCode.bot_win()
+                                            
+                elif Operation.check_winner() == "Empate":
+                    ReusableCode.tie()
