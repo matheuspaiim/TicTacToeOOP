@@ -3,24 +3,26 @@ import tkinter as tk
 from package.mainframe.interface import Interface
 from package.functionalities.reusable_code import ReusableCode
 
-buttons =  [[0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]]  
+#____________________Board buttons____________________
+board =  [[0, 0, 0],
+          [0, 0, 0],
+          [0, 0, 0]]  
 class Operation():
-      
+#____________________Restart Board____________________    
     def new_game():
         for row in range(3):
             for column in range(3):
-                buttons[row][column].config(text="", bg="#3b3b3b")
+                board[row][column].config(text="", bg="#3b3b3b")
 
+#____________________Check if there are still empty spaces on the board____________________
 
     def empty_spaces():
-        global spaces, buttons  
+        global spaces, board  
         spaces = 9
         
         for row in range(3):
             for column in range(3):
-                if buttons[row][column]['text'] != "":
+                if board[row][column]['text'] != "":
                     spaces -= 1
                                     
         if spaces == 0:
@@ -28,64 +30,65 @@ class Operation():
         else:
             return True
     
-            
+#____________________Checks for a winner____________________            
+
     def check_winner():
 
         for row in range(3):
-            if buttons[row][0]['text'] == buttons[row][1]['text'] == buttons[row][2]['text'] != "":
-                buttons[row][0].config(bg="forestgreen")
-                buttons[row][1].config(bg="forestgreen")
-                buttons[row][2].config(bg="forestgreen")
+            if board[row][0]['text'] == board[row][1]['text'] == board[row][2]['text'] != "":
+                board[row][0].config(bg="forestgreen")
+                board[row][1].config(bg="forestgreen")
+                board[row][2].config(bg="forestgreen")
                 return True
 
         for column in range(3):
-            if buttons[0][column]['text'] == buttons[1][column]['text'] == buttons[2][column]['text'] != "":
-                buttons[0][column].config(bg="forestgreen")
-                buttons[1][column].config(bg="forestgreen")
-                buttons[2][column].config(bg="forestgreen")
+            if board[0][column]['text'] == board[1][column]['text'] == board[2][column]['text'] != "":
+                board[0][column].config(bg="forestgreen")
+                board[1][column].config(bg="forestgreen")
+                board[2][column].config(bg="forestgreen")
                 return True
 
-        if buttons[0][0]['text'] == buttons[1][1]['text'] == buttons[2][2]['text'] != "":
-            buttons[0][0].config(bg="forestgreen")
-            buttons[1][1].config(bg="forestgreen")
-            buttons[2][2].config(bg="forestgreen")
+        if board[0][0]['text'] == board[1][1]['text'] == board[2][2]['text'] != "":
+            board[0][0].config(bg="forestgreen")
+            board[1][1].config(bg="forestgreen")
+            board[2][2].config(bg="forestgreen")
             return True
 
-        elif buttons[0][2]['text'] == buttons[1][1]['text'] == buttons[2][0]['text'] != "":
-            buttons[0][2].config(bg="forestgreen")
-            buttons[1][1].config(bg="forestgreen")
-            buttons[2][0].config(bg="forestgreen")
+        elif board[0][2]['text'] == board[1][1]['text'] == board[2][0]['text'] != "":
+            board[0][2].config(bg="forestgreen")
+            board[1][1].config(bg="forestgreen")
+            board[2][0].config(bg="forestgreen")
             return True
 
         elif Operation.empty_spaces() is False:
 
             for row in range(3):
                 for column in range(3):
-                    buttons[row][column].config(bg="gold")
+                    board[row][column].config(bg="gold")
             return "Empate"
 
         else:
             return False
 
-
+#____________________Easy Difficulty____________________
 class Easy(tk.Frame):   
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         Interface.board(self)
            
-           
+#____________________Medium Difficulty____________________           
 class Medium(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         Interface.board(self)
  
-            
+#____________________Hard Difficulty____________________            
 class Hard(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         Interface.board(self)
        
-        
+#____________________Play with a friend____________________        
 class HumanPlayer(Operation, tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -94,11 +97,11 @@ class HumanPlayer(Operation, tk.Frame):
     def human_play(row, column):
         import package.functionalities.reusable_code
         player = package.functionalities.reusable_code.player
-        if buttons[row][column]['text'] == "" and Operation.check_winner() is False:
+        if board[row][column]['text'] == "" and Operation.check_winner() is False:
 
             if player == "X":
 
-                buttons[row][column]['text'] = player
+                board[row][column]['text'] = player
                 
                 if Operation.check_winner() is False:
                     ReusableCode.bot_move()
@@ -111,7 +114,7 @@ class HumanPlayer(Operation, tk.Frame):
 
             else:
 
-                buttons[row][column]['text'] = player
+                board[row][column]['text'] = player
 
                 if Operation.check_winner() is False:
                     ReusableCode.player_move()

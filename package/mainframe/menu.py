@@ -3,7 +3,7 @@ from package.functionalities.operation import Easy, Medium, Hard, HumanPlayer
 from package.functionalities.reusable_code import ReusableCode
 import tkinter as tk
 
-
+#____________________Mainframe and frame selection____________________
 class Window(tk.Tk):
    
     def __init__(self, *args, **kwargs):
@@ -28,6 +28,7 @@ class Window(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
 
+#____________________First Page (Menu)____________________
 class Menu(tk.Frame):
          
     def __init__(self, parent, controller):
@@ -47,5 +48,4 @@ class Menu(tk.Frame):
         
 window = Window()
 window.geometry("318x510")
-
 window.mainloop()
