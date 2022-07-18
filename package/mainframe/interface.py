@@ -3,13 +3,14 @@ import tkinter as tk
 from tkinter import ttk
 from package.functionalities.reusable_code import ReusableCode
 
-class Interface():
+class Interface(tk.Frame):
+
 #____________________Visual Board____________________
     
     def board(self): 
         import package.functionalities.operation
         from package.functionalities.operation import HumanPlayer, Operation
-        board = package.functionalities.operation.board           
+        board = package.functionalities.operation.board     
 
         for row in range(3):
             for column in range(3):
@@ -20,20 +21,24 @@ class Interface():
 #____________________Restart Button____________________
             
         def restart_button(self):
-            human_button = Button(self, text='Restart', font=ReusableCode.SMALL_FONT, padx=15, pady=2, command=Operation.new_game)
-            human_button.place(x=114, y=460)                          
+            restart_button = ttk.Button(self, text='Reiniciar', command=Operation.new_game)
+            restart_button.place(x=39, y=460)                          
         restart_button(self)
         
+#____________________Return to menu button____________________       
+        
+        def reset_score(self):  
+            return_button = ttk.Button(self, text='Zerar placar', command=ReusableCode.restarting_score)
+            return_button.place(x=194, y=460)                 
+        reset_score(self)
 #____________________Change Player Button (o)____________________
         
         def o_player(): 
             import package.functionalities.reusable_code
             player = package.functionalities.reusable_code.player 
-            if player == "O" or player == "X":
-                HumanPlayer.human_play(row, column)
+            if player != '':
                 Operation.new_game()
-                ReusableCode.label_o()
-                ReusableCode.restarting_score()                
+                ReusableCode.bot_move()
                  
         self.python_image_o = tk.PhotoImage(file='C:/Users/mathe/Documents/GitHub/TicTacToe2.0/assets/o.png')
         button_o = ttk.Button(
@@ -48,11 +53,9 @@ class Interface():
         def x_player():
             import package.functionalities.reusable_code
             player = package.functionalities.reusable_code.player 
-            if player == "X" or player == "O":
-                HumanPlayer.human_play(row, column)
+            if player != '':
                 Operation.new_game()
-                ReusableCode.label_x()
-                ReusableCode.restarting_score() 
+                ReusableCode.player_move()
                   
         self.python_image_x = tk.PhotoImage(file='C:/Users/mathe/Documents/GitHub/TicTacToe2.0/assets/x.png')   
         button_x = ttk.Button(
