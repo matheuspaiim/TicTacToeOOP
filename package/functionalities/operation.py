@@ -1,3 +1,4 @@
+import random
 from tkinter import *
 import tkinter as tk
 from package.mainframe.interface import Interface
@@ -65,11 +66,46 @@ class Operation():
             return False
 
 #____________________Easy Difficulty____________________
-class Easy(tk.Frame):   
+class Easy(Operation, tk.Frame):   
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         Interface.board(self)
            
+    def easy_play(row, column):
+        import package.functionalities.reusable_code
+        player = package.functionalities.reusable_code.player
+        
+        if Operation.check_winner() is False:
+            
+            if player == 'X':
+
+                board[row][column]['text'] = player
+                
+                if Operation.check_winner() is False:
+                    board[random.randrange(3)][random.randrange(3)]['text'] = 'O'
+                    ReusableCode.player_move()
+
+                elif Operation.check_winner() is True:
+                    ReusableCode.player_win()
+                    
+                elif Operation.check_winner() == 'Empate':
+                    ReusableCode.tie()
+
+            else:
+
+                board[row][column]['text'] = player
+
+                if Operation.check_winner() is False:
+                    board[random.randrange(3)][random.randrange(3)]['text'] = 'X'
+                    ReusableCode.player2_move()
+        
+                elif Operation.check_winner() is True:
+                    ReusableCode.player2_win()
+                                            
+                elif Operation.check_winner() == 'Empate':
+                    ReusableCode.tie()   
+                    
+                    
 #____________________Medium Difficulty____________________           
 class Medium(tk.Frame):
     def __init__(self, parent, controller):
@@ -91,14 +127,15 @@ class HumanPlayer(Operation, tk.Frame):
     def human_play(row, column):
         import package.functionalities.reusable_code
         player = package.functionalities.reusable_code.player
-        if board[row][column]['text'] == '' and Operation.check_winner() is False:
-
+        
+        if Operation.check_winner() is False:
+            
             if player == 'X':
 
                 board[row][column]['text'] = player
                 
                 if Operation.check_winner() is False:
-                    ReusableCode.bot_move()
+                    ReusableCode.player2_move()
 
                 elif Operation.check_winner() is True:
                     ReusableCode.player_win()
@@ -114,7 +151,7 @@ class HumanPlayer(Operation, tk.Frame):
                     ReusableCode.player_move()
         
                 elif Operation.check_winner() is True:
-                    ReusableCode.bot_win()
+                    ReusableCode.player2_win()
                                             
                 elif Operation.check_winner() == 'Empate':
                     ReusableCode.tie()

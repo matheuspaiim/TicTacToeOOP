@@ -43,7 +43,7 @@ class ReusableCode():
         
         
 #____________________Changes player move____________________        
-    def bot_move():  
+    def player2_move():  
         global player, label
         player = 'O'
         label.config(text=('Vez de O'), foreground='#3297a8')
@@ -52,11 +52,11 @@ class ReusableCode():
         global player, label 
         player = 'X'
         label.config(text=('Vez de X'), foreground='#e85151')    
-    
+
         
 #____________________Set winner on the screen____________________
 
-    def bot_win():  
+    def player2_win():  
         global player, label, score_o, score_o_label
         label.config(text=(player+' Venceu'), foreground='forestgreen')
         score_o+=1
