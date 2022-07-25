@@ -1,4 +1,3 @@
-import random
 from tkinter import *
 
 player = 'X'
