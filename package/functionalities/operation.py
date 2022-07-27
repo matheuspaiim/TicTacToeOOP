@@ -1,10 +1,6 @@
-from pickle import EMPTY_SET
 import random
 from tkinter import *
 import tkinter as tk
-from zoneinfo import available_timezones
-
-from pkg_resources import empty_provider
 from package.mainframe.interface import Interface
 from package.functionalities.reusable_code import ReusableCode
 
@@ -28,13 +24,11 @@ class Operation():
             for column in range(3):
                 if (board[row][column]['text'] == ''):
                     return True
-        return False
-    
-    
+        return False    
     
 #____________________Checks for a winner____________________            
 
-    def check_winner():
+    def check_winner(self):
         for row in range(3):
             if board[row][0]['text'] == board[row][1]['text'] == board[row][2]['text'] != '':
                 board[row][0].config(bg='forestgreen')
@@ -71,59 +65,52 @@ class Operation():
         else:
             return False
 
-    def available_moves():
-        ...
-        
-    def random_move():
-        ...            
 
-        
+    def available_moves():
+        return [i for i, x in enumerate(board) if x == '']
+
+
 #____________________Easy Difficulty____________________
 class Easy(Operation, tk.Frame):   
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         Interface.board(self)
            
-    def easy_play(row, column):
+    def easy_play(self, row, column):
         import package.functionalities.reusable_code
         player = package.functionalities.reusable_code.player
         
-        if Operation.check_winner() is False:
+        if self.check_winner() is False and board[row][column]['text'] == '':
             
             if player == 'X':
 
                 board[row][column]['text'] = player
                 
-                if Operation.check_winner() is False:
+                if self.check_winner() is False and Operation.available_moves():
                     board[random.randrange(3)][random.randrange(3)]['text'] = 'O'
                     ReusableCode.player_move()
 
-                elif Operation.check_winner() is True:
+                elif self.check_winner() is True:
                     ReusableCode.player_win()
                     
-                elif Operation.check_winner() == 'Empate':
+                elif self.check_winner() == 'Empate':
                     ReusableCode.tie()
 
             else:
 
                 board[row][column]['text'] = player
 
-                if Operation.check_winner() is False:
+                if self.check_winner() is False:
                     board[random.randrange(3)][random.randrange(3)]['text'] = 'X'
                     ReusableCode.player2_move()
         
-                elif Operation.check_winner() is True:
+                elif self.check_winner() is True:
                     ReusableCode.player2_win()
                                             
-                elif Operation.check_winner() == 'Empate':
-                    ReusableCode.tie()   
+                elif self.check_winner() == 'Empate':
+                    ReusableCode.tie()
                     
                     
-#____________________Medium Difficulty____________________           
-class Medium(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        Interface.board(self)
  
 #____________________Hard Difficulty____________________            
 class Hard(tk.Frame):
@@ -131,106 +118,7 @@ class Hard(tk.Frame):
         tk.Frame.__init__(self, parent)
         Interface.board(self)
  
-    # This is the minimax function. It considers all
-    # the possible ways the game can go and returns
-    # the value of the board
-    def minimax(board, depth, isMax):
-        score = Hard.evaluate(board)
-    
-        # If Maximizer has won the game return his/her
-        # evaluated score
-        if (score == 10):
-            return score - depth
-    
-        # If Minimizer has won the game return his/her
-        # evaluated score
-        if (score == -10):
-            return score + depth
-    
-        # If there are no more moves and no winner then
-        # it is a tie
-        if (Hard.empty_spaces() == False):
-            return 0
-    
-        # If this maximizer's move
-        if (isMax):    
-            best = -1000
-    
-            # Traverse all cells
-            for row in range(3):        
-                for column in range(3):
-                
-                    # Check if cell is empty
-                    if (board[row][column]['text'] == ''):
-                    
-                        # Make the move
-                        board[row][column]['text'] = 'X'
-    
-                        # Call minimax recursively and choose
-                        # the maximum value
-                        best = max( best, Hard.minimax(board,
-                                                depth + 1,
-                                                not isMax) )
-    
-                        # Undo the move
-                        board[row][column]['text'] = ''
-            return best
-    
-        # If this minimizer's move
-        else:
-            best = 1000
-    
-            # Traverse all cells
-            for row in range(3):        
-                for column in range(3):
-                
-                    # Check if cell is empty
-                    if (board[row][column]['text'] == ''):
-                    
-                        # Make the move
-                        board[row][column]['text'] = 'O'
-    
-                        # Call minimax recursively and choose
-                        # the minimum value
-                        best = min(best, Hard.minimax(board, depth + 1, not isMax))
-    
-                        # Undo the move
-                        board[row][column]['text'] = ''
-            return best
-    
-    # This will return the best possible move for the player
-    def findBestMove(board):
-        bestVal = -1000
-        bestMove = (-1, -1)
-    
-        # Traverse all cells, evaluate minimax function for
-        # all empty cells. And return the cell with optimal
-        # value.
-        for row in range(3):    
-            for column in range(3):
-            
-                # Check if cell is empty
-                if (board[row][column]['text'] == ''):
-                
-                    # Make the move
-                    board[row][column]['text'] = 'X'
-    
-                    # compute evaluation function for this
-                    # move.
-                    moveVal = Hard.minimax(board, 0, False)
-    
-                    # Undo the move
-                    board[row][column]['text'] = ''
-    
-                    # If the value of the current move is
-                    # more than the best value, then update
-                    # best/
-                    if (moveVal > bestVal):               
-                        bestMove = (row, column)
-                        bestVal = moveVal
-        return bestMove
-    
-    bestMove = findBestMove(board)
+
  
        
 #____________________Play with a friend____________________        
@@ -239,34 +127,34 @@ class HumanPlayer(Operation, tk.Frame):
         tk.Frame.__init__(self, parent)
         Interface.board(self)
 
-    def human_play(row, column):
+    def human_play(self, row, column):
         import package.functionalities.reusable_code
         player = package.functionalities.reusable_code.player
         
-        if Operation.check_winner() is False:
+        if self.check_winner() is False:
             
             if player == 'X':
 
                 board[row][column]['text'] = player
                 
-                if Operation.check_winner() is False:
+                if self.check_winner() is False:
                     ReusableCode.player2_move()
 
-                elif Operation.check_winner() is True:
+                elif self.check_winner() is True:
                     ReusableCode.player_win()
                     
-                elif Operation.check_winner() == 'Empate':
+                elif self.check_winner() == 'Empate':
                     ReusableCode.tie()
 
             else:
 
                 board[row][column]['text'] = player
 
-                if Operation.check_winner() is False:
+                if self.check_winner() is False:
                     ReusableCode.player_move()
         
-                elif Operation.check_winner() is True:
+                elif self.check_winner() is True:
                     ReusableCode.player2_win()
                                             
-                elif Operation.check_winner() == 'Empate':
+                elif self.check_winner() == 'Empate':
                     ReusableCode.tie()

@@ -9,13 +9,13 @@ class Interface(tk.Frame):
     
     def board(self): 
         import package.functionalities.operation
-        from package.functionalities.operation import HumanPlayer, Operation
+        from package.functionalities.operation import Easy, HumanPlayer, Operation
         board = package.functionalities.operation.board     
 
         for row in range(3):
             for column in range(3):
                 board[row][column] = Button(self, text='', font=(ReusableCode.BIG_FONT), width=3, height=1,
-                                            command=lambda row=row, column=column: HumanPlayer.human_play(row, column), bg='#3b3b3b', foreground='white')
+                                            command=lambda row=row, column=column: Easy.easy_play(self, row, column), bg='#3b3b3b', foreground='white')
                 board[row][column].grid(row=row, column=column)   
                   
                   

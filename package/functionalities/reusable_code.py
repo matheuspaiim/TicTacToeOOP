@@ -52,7 +52,6 @@ class ReusableCode():
         player = 'X'
         label.config(text=('Vez de X'), foreground='#e85151')    
 
-        
 #____________________Set winner on the screen____________________
 
     def player2_win():  
