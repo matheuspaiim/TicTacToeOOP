@@ -2,8 +2,6 @@
 
 ### Jogo da velha em python utilizando programação orientada a objetos.
 
-Você pode abrir diretamente o projeto no Heruko [nesse link](https://tictactoeoop.herokuapp.com)
-
 ## Tecnologia utilizada:
 
 * [Python](https://www.python.org)
