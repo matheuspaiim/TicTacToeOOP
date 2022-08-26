@@ -2,16 +2,18 @@
 
 ### Jogo da velha em python utilizando programação orientada a objetos.
 
-Você pode abrir diretamente o projeto no Heruko [nesse link](https://tictactoeoop.herokuapp.com)
 
 ## Tecnologia utilizada:
 
 * [Python](https://www.python.org)
 
+
 ## Como rodar o projeto e fazer alterações:
+
 
 1. Baixe e instale [Python](https://www.python.org/downloads/), [VisualStudioCode](https://code.visualstudio.com/download).
 2. Abra a pasta do projeto no VisualStudioCode e abra o arquivo main.py e execute.
+
 
 ## Screenshots:
 ![Menu](https://user-images.githubusercontent.com/65717016/182657456-d433b4b5-313d-4d7d-b6f5-8ad6ba372f0b.png)
