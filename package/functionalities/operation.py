@@ -1,5 +1,4 @@
 import random
-from tkinter import *
 import tkinter as tk
 from package.mainframe.interface import Interface
 from package.functionalities.reusable_code import ReusableCode

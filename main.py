@@ -1,4 +1,3 @@
-from tkinter import *
 from package.mainframe.menu import Window
 
 class Main():
