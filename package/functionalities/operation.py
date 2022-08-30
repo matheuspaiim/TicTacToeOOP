@@ -78,22 +78,21 @@ class Easy(Operation, tk.Frame):
     def easy_play(self, row, column):
         import package.functionalities.reusable_code
         player = package.functionalities.reusable_code.player
+        randomq = random.randrange(3)
         
         if self.check_winner() is False and board[row][column]['text'] == '':
             
             if player == 'X':
 
                 board[row][column]['text'] = player
-                
-                if self.check_winner() is False and Operation.available_moves():
-                    board[random.randrange(3)][random.randrange(3)]['text'] = 'O'
-                    ReusableCode.player_move()
 
-                elif self.check_winner() is True:
-                    ReusableCode.player_win()
-                    
-                elif self.check_winner() == 'Empate':
-                    ReusableCode.tie()
+                for row in range(1):
+                    for column in range(1):
+                        if board[random.randrange(3)][random.randrange(3)]['text'] == '':
+                            board[random.randrange(3)][random.randrange(3)]['text'] = 'O'
+                            ReusableCode.player_move()
+                        
+
 
             else:
 
@@ -130,7 +129,7 @@ class HumanPlayer(Operation, tk.Frame):
         import package.functionalities.reusable_code
         player = package.functionalities.reusable_code.player
         
-        if self.check_winner() is False:
+        if self.check_winner() is False and board[row][column]['text'] == '':
             
             if player == 'X':
 
