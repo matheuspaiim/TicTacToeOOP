@@ -88,7 +88,7 @@ class Easy(Operation, tk.Frame):
 
                 for row in range(1):
                     for column in range(1):
-                        if board[random.randrange(3)][random.randrange(3)]['text'] == '':
+                        if board[row][column]['text'] == '':
                             board[random.randrange(3)][random.randrange(3)]['text'] = 'O'
                             ReusableCode.player_move()
                         
